@@ -10,7 +10,6 @@ import tablet2En from "@/assets/images/tablet-2-slider-en.png";
 import tablet3 from "@/assets/images/tablet-3-slider.png";
 import tablet3En from "@/assets/images/tablet-3-slider-en.png";
 import bottomImage1 from "@/assets/images/slider1-benefits.svg";
-import bottomImage1En from "@/assets/images/slider-1-benefits-en.svg";
 import bottomImage2 from "@/assets/images/slider2Benefits.svg";
 import bottomImage2En from "@/assets/images/slider-2-benefits-en.svg";
 import bottomImage3 from "@/assets/images/slider3Benefits.svg";
@@ -35,7 +34,7 @@ const Product = () => {
         {
             image: i18n.language === "RU" ? tablet1 : tablet1En,
             bigText: { title: t("bigTextTitle1"), description: t("bigTextDescription1") },
-            bottomImage: i18n.language === "RU" ? bottomImage1 : bottomImage1En,
+            bottomImage: i18n.language === "RU" ? bottomImage1 : bottomImage1,
             bottomImageMob: i18n.language === "RU" ? bottomImage1Mob : bottomImage1MobEn,
         },
         {

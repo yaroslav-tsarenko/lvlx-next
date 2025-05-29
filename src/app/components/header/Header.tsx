@@ -20,6 +20,7 @@ export default function Header() {
     const logoRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
+        localStorage.setItem('selectedLanguageLVLX', 'RU');
         const storedLang = localStorage.getItem('selectedLanguageLVLX');
         if (storedLang) setSelectedLanguage(storedLang);
 
