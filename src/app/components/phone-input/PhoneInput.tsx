@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./PhoneInput.module.scss";
 import Image from "next/image";
+import {useTranslation} from "react-i18next";
 
 interface Country {
     name: string;
@@ -28,9 +29,11 @@ interface PhoneInputProps {
     placeholder?: string;
 }
 
-const PhoneInput = ({ id, name, value, onChange, onBlur, error, touched, placeholder }: PhoneInputProps) => {
+const PhoneInput = ({ id, name, value, onChange, onBlur, error, touched}: PhoneInputProps) => {
     const [countries, setCountries] = useState<Country[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const { t } = useTranslation();
+
     const [selectedCountry, setSelectedCountry] = useState<Country>({
         name: "Poland",
         flag: "https://flagcdn.com/w320/pl.png",
@@ -101,7 +104,7 @@ const PhoneInput = ({ id, name, value, onChange, onBlur, error, touched, placeho
                     id={id}
                     name={name}
                     type="text"
-                    placeholder={placeholder || "+48..."}
+                    placeholder={t("formNumber")}
                     value={getOnlyPhonePart(value)}
                     onChange={handleInputChange}
                     onBlur={onBlur}

@@ -7,11 +7,13 @@ import styles from './Header.module.scss';
 import logo from '@/assets/logo/lvlx-logo.svg';
 import logoWhite from '@/assets/logo/lvlx-logo-white.svg';
 import arrowTopRight from '@/assets/icons/arrow-top-right.svg';
-import {Select, Option} from '@mui/joy';
+import { IoIosArrowDown } from "react-icons/io";
+import i18n from '@/utils/i18next';
 
 export default function Header() {
-    const [selectedLanguage, setSelectedLanguage] = useState('RU');
     const [currentLogo, setCurrentLogo] = useState(logo);
+    const [selectedLanguage, setSelectedLanguage] = useState("RU");
+
     const logoRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
@@ -29,9 +31,7 @@ export default function Header() {
         const wrapper = document.querySelector(`.${styles.customButtonWrapper}`);
         const text = wrapper?.querySelector('p');
         const arrow = wrapper?.querySelector(`.${styles.arrowIcon}`);
-
         const targets = [text, arrow].filter(Boolean);
-
         if (wrapper && targets.length) {
             wrapper.addEventListener('mouseenter', () => {
                 gsap.to(targets, {
@@ -47,7 +47,6 @@ export default function Header() {
                             opacity: 0,
                             filter: 'blur(6px)',
                         });
-
                         gsap.to(targets, {
                             y: 0,
                             opacity: 1,
@@ -61,32 +60,31 @@ export default function Header() {
             });
         }
 
-        const observer = new IntersectionObserver((entries) => {
-            let shouldSwitchToWhite = false;
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const anyVisible = entries.some((entry) => entry.isIntersecting);
 
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) shouldSwitchToWhite = true;
-            });
+                gsap.to(logoRef.current, {
+                    opacity: 0,
+                    duration: 0.3,
+                    onComplete: () => {
+                        setCurrentLogo(anyVisible ? logoWhite : logo);
+                        gsap.to(logoRef.current, {
+                            opacity: 1,
+                            duration: 0.3,
+                        });
+                    },
+                });
+            },
+            { threshold: 0.3 }
+        );
 
-            gsap.to(logoRef.current, {
-                opacity: 0,
-                duration: 0.3,
-                onComplete: () => {
-                    setCurrentLogo(shouldSwitchToWhite ? logoWhite : logo);
-                    gsap.to(logoRef.current, {
-                        opacity: 1,
-                        duration: 0.3,
-                    });
-                },
-            });
-        }, {
-            threshold: 0.3,
-        });
+        const sectionsToWatch = [
+            document.querySelector('#benefits-section'),
+            document.querySelector('#streamers-section'),
+        ];
 
-        const benefits = document.querySelector('.benefits');
-        const streamers = document.querySelector('#streamers-section');
-        if (benefits) observer.observe(benefits);
-        if (streamers) observer.observe(streamers);
+        sectionsToWatch.forEach((el) => el && observer.observe(el));
 
         return () => observer.disconnect();
     }, []);
@@ -94,10 +92,9 @@ export default function Header() {
     const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
         setSelectedLanguage(value);
+        i18n.changeLanguage(value);
         localStorage.setItem('selectedLanguageLVLX', value);
-        window.location.reload();
     };
-
     const redirectToTelegram = () => {
         window.location.href = 'https://t.me/your_telegram_channel';
     };
@@ -114,20 +111,28 @@ export default function Header() {
             />
             <div className={styles.nav}>
                 <div className={styles.selector}>
-                    <Select
+                    <IoIosArrowDown className={styles.arrowDown} />
+                    <select
                         value={selectedLanguage}
-                        onChange={(e, newValue) => handleLanguageChange({target: {value: newValue}} as React.ChangeEvent<HTMLSelectElement>)}
-                        sx={{
-                            borderColor: '#d3d3d3',
-                            height: '50px',
-                            padding: '16px 26px 16px 16px',
-                            borderRadius: '16px',
+                        onChange={handleLanguageChange}
+                        style={{
+                            borderColor: "#d3d3d3",
+                            height: "50px",
+                            borderRadius: "16px",
+                            padding: "16px 20px 16px 16px",
+                            fontSize: "16px",
+                            outline: "none",
+                            width: "90px",
+                            background: "white",
+                            cursor: "pointer",
+                            appearance: "none",
+                            WebkitAppearance: "none",
+                            MozAppearance: "none",
                         }}
-                        className={styles.selector}
                     >
-                        <Option value="RU">RU</Option>
-                        <Option value="EN">EN</Option>
-                    </Select>
+                        <option value="RU">RU</option>
+                        <option value="EN">EN</option>
+                    </select>
                 </div>
                 <button className={styles.button} onClick={redirectToTelegram}>PR</button>
                 <div className={styles.customButtonWrapper} onClick={redirectToTelegram}>

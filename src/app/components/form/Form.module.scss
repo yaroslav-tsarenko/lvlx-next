@@ -2,17 +2,79 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 400px;
+  width: 450px;
   margin: 0 auto;
   background: white;
   padding: 40px 30px;
   border-radius: 20px;
   text-align: start;
 
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+    max-width: 400px;
+  }
+
   h1 {
     margin-bottom: 25px;
     font-weight: 500;
     color: var(--black);
+  }
+}
+
+.popup {
+  display: flex;
+  position: relative;
+  padding: 30px;
+  width: auto;
+  justify-content: space-between;
+  height: 660px;
+  background: var(--orange);
+  flex-direction: column;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 550px;
+  }
+
+  h2 {
+    color: white;
+    max-width: 492px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 400;
+
+    @media screen and (max-width: 768px) {
+      font-size: 25px;
+    }
+  }
+}
+
+.closeIcon {
+  display: flex;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: 0.3s all;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.duck {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 493px;
+  width: auto;
+  transition: 0.3s all;
+
+  @media screen and (max-width: 768px) {
+    height: 350px;
   }
 }
 

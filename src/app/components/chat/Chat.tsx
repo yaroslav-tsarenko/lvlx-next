@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Chat.module.scss";
 import gsap from "gsap";
-import {useAnimation} from "@/hooks/useAnimation";
 
 interface Message {
     nickname: string;
@@ -31,20 +30,16 @@ const getRandomColor = () => {
 };
 
 const Chat = () => {
+    const chatRef = useRef<HTMLDivElement>(null);
     const chatContentRef = useRef<HTMLDivElement>(null);
     const [visibleMessages, setVisibleMessages] = useState<Message[]>([]);
     const [index, setIndex] = useState(0);
+    const [started, setStarted] = useState(false);
     const [scrollStarted, setScrollStarted] = useState(false);
     const [nicknameColors, setNicknameColors] = useState<Record<string, string>>({});
 
     const pinnedMessages = allMessages.filter((msg) => msg.pinned);
     const unpinned = allMessages.filter((msg) => !msg.pinned);
-
-    const fromLeft = useAnimation<HTMLDivElement>({
-        animation: "fadeUp",
-        showWhenElementInView: true,
-        delay: 0.5,
-    });
 
     useEffect(() => {
         const colors: Record<string, string> = {};
@@ -56,7 +51,25 @@ const Chat = () => {
         setNicknameColors(colors);
     }, []);
 
+    // 👁️ IntersectionObserver to trigger animation
     useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !started) {
+                    setStarted(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.2 }
+        );
+        if (chatRef.current) observer.observe(chatRef.current);
+        return () => observer.disconnect();
+    }, [started]);
+
+    // ⏱️ Start adding messages only when visible
+    useEffect(() => {
+        if (!started) return;
+
         const interval = setInterval(() => {
             if (index < unpinned.length) {
                 setVisibleMessages((prev) => [...prev, unpinned[index]]);
@@ -66,29 +79,11 @@ const Chat = () => {
                 setTimeout(() => setScrollStarted(true), 1000);
             }
         }, 1000);
+
         return () => clearInterval(interval);
-    }, [index]);
+    }, [started, index]);
 
-    useEffect(() => {
-        const chatEl = chatContentRef.current;
-        if (!chatEl) return;
-
-        const lastItem = chatEl.querySelector(`.${styles.chatItem}:last-child`) as HTMLElement;
-        if (lastItem) {
-            gsap.fromTo(
-                lastItem,
-                { opacity: 0, y: 30, scale: 0.95 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: "power4.out",
-                }
-            );
-        }
-    }, [visibleMessages]);
-
+    // 🔄 Auto scroll
     useEffect(() => {
         if (!scrollStarted) return;
         const chatEl = chatContentRef.current;
@@ -116,7 +111,7 @@ const Chat = () => {
     }, [scrollStarted]);
 
     return (
-        <div className={styles.streamerChat} ref={fromLeft}>
+        <div className={styles.streamerChat} ref={chatRef}>
             <h4>Чат стрима</h4>
             <div className={styles.streamerChatContent} ref={chatContentRef}>
                 {pinnedMessages.map((item, index) => (

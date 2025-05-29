@@ -1,9 +1,7 @@
 import type {Metadata} from "next";
 import {Inter, Inter_Tight} from "next/font/google";
 import "./globals.css";
-import Footer from "@/app/components/footer/Footer";
 import Head from "next/head";
-import BottomNav from "@/app/components/bottom-nav/BottomNav";
 import LenisScriptLoader from "@/utils/LenisScriptLoader";
 
 const interSans = Inter({variable: "--font-inter-sans", subsets: ["latin"]});
@@ -31,9 +29,7 @@ export default function RootLayout({
         </Head>
         <body>
         <LenisScriptLoader/>
-        <BottomNav/>
         {children}
-        <Footer/>
         </body>
         </html>
     );

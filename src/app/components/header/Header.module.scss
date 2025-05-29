@@ -13,8 +13,17 @@
   }
 }
 
+.arrowDown {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: 15%;
+  transform: translateY(-50%);
+}
+
 .selector{
   display: flex;
+  position: relative;
 
   @media screen and (max-width: 1024px) {
     display: none;

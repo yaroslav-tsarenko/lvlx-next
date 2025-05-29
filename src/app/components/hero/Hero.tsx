@@ -10,12 +10,29 @@ import cpa from "@/assets/images/cpa-desktop.svg";
 import rga from "@/assets/images/rev-share-desktop.svg";
 import cpaMob from "@/assets/images/cpaMob.svg";
 import rgaMob from "@/assets/images/revShareMob.svg";
+import {useTranslation} from "react-i18next";
 
 const Hero = () => {
     const leftSideRef = useRef(null);
     const rightSideRef = useRef(null);
-
     const [videoSrc, setVideoSrc] = useState("/girl.mp4");
+    const { t } = useTranslation();
+    const [showHeader, setShowHeader] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 30) {
+                setShowHeader(true);
+            } else {
+                setShowHeader(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -37,6 +54,13 @@ const Hero = () => {
     return (
         <div className={styles.hero} id="home-section">
             <Header/>
+            <div
+                className={`${styles.fixedHeader} ${
+                    showHeader ? styles.visible : styles.hidden
+                }`}
+            >
+                <Header/>
+            </div>
             <video
                 className={`${styles.bgVideo} ${styles.videoAnimate}`}
                 src={videoSrc}
@@ -49,9 +73,9 @@ const Hero = () => {
             <div className={`${styles.heroContent} ${styles.heroAnimate}`}>
                 <div className={styles.leftSide} ref={leftSideRef}>
                     <div className={styles.mainTitle}>
-                        <h1>Монетизируй трафик</h1>
-                        <h2>Монетизируй трафик</h2>
-                        <p>С прямым рекламодателем iGaming продуктов</p>
+                        <h1>{t('monetize')}</h1>
+                        <h2>{t('monetize')}</h2>
+                        <p>{t('direct')}</p>
                     </div>
                     <div className={styles.images}>
                         <Image src={cpa} alt="image" width={320} height={160}/>
