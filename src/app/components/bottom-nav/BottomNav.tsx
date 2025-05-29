@@ -48,13 +48,6 @@ const BottomNav = () => {
         );
     }, []);
 
-    const ref = useAnimation<HTMLHeadingElement>({
-        animation: "fadeBlurFromBottomToTop",
-        showWhenElementInView: true,
-        delay: 0.3,
-    });
-
-
     return (
         <>
             <div className={styles.wrapper} ref={navRef}>
