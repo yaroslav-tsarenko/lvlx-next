@@ -23,15 +23,28 @@
   border-radius: 55px;
   position: fixed;
   left: 50%;
-  bottom: 2%;
-  transform: translateX(-50%);
+  bottom: 6%;
+  transform: translate(-50%, 30px); // ⬅️ об’єднано
   z-index: 999;
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
 
   @media screen and (max-width: 1024px) {
     display: flex;
     gap: 3px;
+    animation: fadeIn 1s ease-out 2s forwards;
   }
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 
 .bottomAnimate {
   opacity: 0;

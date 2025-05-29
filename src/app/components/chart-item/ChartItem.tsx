@@ -73,6 +73,7 @@ const ChartItem = ({ chart, h4, p, highlighted = false, maxHeight = null }: Prop
                 autoPlay
                 loop
                 muted
+                style={{ backgroundColor: "transparent" }}
                 playsInline/>
         </div>
     );

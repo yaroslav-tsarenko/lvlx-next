@@ -91,6 +91,8 @@
   align-content: center;
   height: auto;
   justify-content: center;
+  background: transparent !important;
+  mix-blend-mode: normal;
 
   @media screen and (max-width: 1445px) {
     position: absolute;

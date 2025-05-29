@@ -8,6 +8,7 @@ import line from "@/assets/images/v-line.svg";
 import burgerButton from "@/assets/icons/burger-button.svg";
 import {Button} from "@mui/material";
 import Image from "next/image";
+import {useAnimation} from "@/hooks/useAnimation";
 
 const buttons = [
     {label: "Преимущества", sectionId: "benefits-section"},
@@ -47,6 +48,13 @@ const BottomNav = () => {
         );
     }, []);
 
+    const ref = useAnimation<HTMLHeadingElement>({
+        animation: "fadeBlurFromBottomToTop",
+        showWhenElementInView: true,
+        delay: 0.3,
+    });
+
+
     return (
         <>
             <div className={styles.wrapper} ref={navRef}>
@@ -79,7 +87,7 @@ const BottomNav = () => {
                     </React.Fragment>
                 ))}
             </div>
-            <div className={styles.mobileNav}>
+            <div className={styles.mobileNav}  >
                 <button className={styles.customButton} onClick={() => scrollToSection("home-section")}>
                     <Image src={burgerButton} alt="Home Icon" width={24} height={24} className={styles.img}/>
                 </button>
