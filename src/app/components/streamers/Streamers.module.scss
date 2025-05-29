@@ -66,6 +66,7 @@
 
   @media screen and (max-width: 1440px) {
     height: 1080px;
+    border-radius: 40px;
   }
 
   @media screen and (max-width: 1024px) {
@@ -283,6 +284,10 @@
 
   @media screen and (max-width: 1440px) {
     height: 750px;
+    border-radius: 40px 40px 40px 40px;
+    --x: 310px; /* horizontal offset (no percentage) */
+    --y: 42px; /* vertical offset (no percentage) */
+    --r: 35px; /* the radius */
   }
 
   @media screen and (max-width: 768px) {

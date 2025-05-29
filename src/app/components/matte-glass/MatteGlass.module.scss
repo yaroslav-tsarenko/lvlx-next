@@ -55,6 +55,10 @@
     width: 380px;
     height: 512px;
     padding: 30px;
+    mask: none;
+    background: none;
+    backdrop-filter: blur(17px);
+    border: 1px solid #fca688;
   }
 
   @media screen and (max-width: 1290px) {

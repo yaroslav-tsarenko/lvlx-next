@@ -128,27 +128,44 @@ const FaqSection = () => {
         Matter.World.add(world, [ground, leftWall, rightWall, faqBody]);
 
         const spriteList = [sprite1.src, sprite2.src, sprite3.src];
-        const isMobile = window.innerWidth <= 768;
-        const radius = isMobile ? 40 : 80; // менші яйця на мобілці
 
-        const objects = Array.from({length: 20}).map(() =>
-            Matter.Bodies.circle(Math.random() * width, isMobile
-                    ? height + Math.random() * 200 // нижній старт для мобільного
-                    : Math.random() * -1000, // звичайний верхній старт для десктопу
-                radius,
-                {
-                    restitution: 0.5,
-                    friction: 0.1,
-                    render: {
-                        sprite: {
-                            texture: spriteList[Math.floor(Math.random() * spriteList.length)],
-                            xScale: isMobile ? 0.35 : 0.6,
-                            yScale: isMobile ? 0.35 : 0.6
-                        }
-                    }
-                }
-            )
-        );
+        const isMobile = width <= 768;
+        const isLaptop = width > 768 && width <= 1440;
+
+        const radius = isMobile
+            ? 40
+            : isLaptop
+                ? 50 // трохи менші яйця на ноутбуках
+                : 80;
+
+        const scale = isMobile
+            ? 0.35
+            : isLaptop
+                ? 0.4 // трохи менше, ніж на великому десктопі
+                : 0.6;
+
+        const objects = Array.from({ length: 20 }).map(() => {
+            const spawnFromLeft = Math.random() < 0.5;
+            const x = spawnFromLeft
+                ? Math.random() * (width * 0.2) // ліва сторона: 0–20%
+                : width * 0.8 + Math.random() * (width * 0.2); // права сторона: 80–100%
+
+            const y = isMobile
+                ? height + Math.random() * 200
+                : Math.random() * -1000;
+
+            return Matter.Bodies.circle(x, y, radius, {
+                restitution: 0.5,
+                friction: 0.1,
+                render: {
+                    sprite: {
+                        texture: spriteList[Math.floor(Math.random() * spriteList.length)],
+                        xScale: scale,
+                        yScale: scale,
+                    },
+                },
+            });
+        });
 
 
         Matter.World.add(world, objects);

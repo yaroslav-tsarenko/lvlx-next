@@ -71,7 +71,6 @@ const ChartItem = ({ chart, h4, p, highlighted = false, maxHeight = null }: Prop
                 loop
                 src={chart}
                 className={styles.chartImage}
-                style={{ width: 160, height: 140 }}
             />
         </div>
     );

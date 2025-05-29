@@ -96,19 +96,19 @@
 
   @media screen and (max-width: 1445px) {
     position: absolute;
-    bottom: 0;
+    bottom: 2%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     margin: 0;
     max-width: 100%;
-    width: 70%;
+    width: 80%;
     height: auto;
   }
 
   @media screen and (max-width: 768px) {
-    width: 85px;
+    width: 80%;
     height: auto;
-    bottom: -1%;
+    bottom: 2%;
     left: 50%;
     transform: translateX(-50%);
   }
