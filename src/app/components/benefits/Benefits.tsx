@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./Benefits.module.scss";
 import linesOrange from "@/assets/gifs/lines.gif";
 import Image from "next/image";
-import MatteGlass from "@/app/components/matte-glass/MatteGlass";
 import rocket from "@/assets/images/rocket-static.svg";
 import graph from "@/assets/images/charts-static.svg";
 import eggs from "@/assets/images/eggs-static.svg";
@@ -13,8 +12,10 @@ import UnionItem from "@/app/components/union-item/UnionItem";
 import BadgeComponent from "@/app/components/badge-component/BadgeComponent";
 import { useAnimation } from "@/hooks/useAnimation";
 import {useTranslation} from "react-i18next";
-
-
+import dynamic from "next/dynamic";
+const MatteGlass = dynamic(() => import("@/app/components/matte-glass/MatteGlass"), {
+    ssr: false,
+});
 type LottieAnimationData = Record<string, unknown>;
 
 const Benefits = () => {

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Hero from "@/app/components/hero/Hero";
-import Benefits from "@/app/components/benefits/Benefits";
 import FAQ from "@/app/components/faq/FAQ";
 import Product from "@/app/components/product/Product";
 import Streamers from "@/app/components/streamers/Streamers";
@@ -11,6 +10,7 @@ import BottomNav from "@/app/components/bottom-nav/BottomNav";
 import {I18nextProvider} from 'react-i18next';
 import i18n from '@/utils/i18next';
 import {FormRegistrationProvider} from "@/context/FormRegistrationContext";
+import Benefits from "@/app/components/benefits/Benefits";
 
 const Page = () => {
     return (

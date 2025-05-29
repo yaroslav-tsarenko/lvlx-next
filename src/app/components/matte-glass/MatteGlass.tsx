@@ -8,8 +8,8 @@ import { Player } from "@lottiefiles/react-lottie-player";
 interface MatteGlassProps {
     title: string;
     description: string;
-    src: {
-        image: StaticImageData | string;
+    src?: {
+        image?: StaticImageData | string;
         gif?: StaticImageData | string;
         json?: object;
     };
@@ -28,19 +28,18 @@ const MatteGlass: FC<MatteGlassProps> = ({ title, description, src }) => {
 
         handleResize();
         window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     const handleMouseEnter = () => {
-        if (!isMobile && src.json) setShowAnimation(true);
+        if (!isMobile && src?.json) setShowAnimation(true);
     };
 
     const handleMouseLeave = () => {
         if (!isMobile) setShowAnimation(false);
     };
+
+    if (!src || !src.image) return null; // 🛡️ защита от падения
 
     return (
         <div
@@ -49,20 +48,15 @@ const MatteGlass: FC<MatteGlassProps> = ({ title, description, src }) => {
             onMouseLeave={handleMouseLeave}
         >
             {showAnimation && src.json ? (
-                <Player
-                    autoplay
-                    loop
-                    src={src.json}
-                    className={styles.animation}
-                />
+                <Player autoplay loop src={src.json} className={styles.animation} />
             ) : (
                 <Image
                     loading="lazy"
                     src={src.image}
                     alt={title}
                     width={430}
-                    className={styles.animationCustom}
                     height={580}
+                    className={styles.animationCustom}
                 />
             )}
             <div className={styles.titles}>

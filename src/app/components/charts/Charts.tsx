@@ -2,8 +2,14 @@
 
 import React, {useEffect, useState} from 'react';
 import styles from "./Charts.module.scss"
-import ChartItem from '../chart-item/ChartItem';
 import {useTranslation} from "react-i18next";
+import dynamic from "next/dynamic";
+
+const ChartItem = dynamic(() => import("@/app/components/chart-item/ChartItem"), {
+    ssr: false,
+});
+
+
 const Charts = () => {
 
     type LottieAnimationData = Record<string, unknown>;
