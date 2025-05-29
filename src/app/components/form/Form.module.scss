@@ -1,0 +1,122 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: start;
+
+  h1 {
+    margin-bottom: 25px;
+    font-weight: 500;
+    color: var(--black);
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  position: relative;
+  border: 1px solid var(--line-color);
+  border-radius: 14px;
+  padding: 17px 20px;
+  width: 100%;
+  outline: none;
+  color: var(--black);
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    border-color: var(--orange);
+  }
+
+  input {
+    display: flex;
+    max-width: 80px;
+    border: none;
+    outline: none;
+  }
+}
+
+.formGroup {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.inputField {
+  border: 1px solid var(--line-color);
+  border-radius: 14px;
+  padding: 17px 20px;
+  width: 100%;
+  outline: none;
+  color: var(--black);
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.inputField:hover {
+  border-color: var(--orange);
+}
+
+.flexContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.customInput {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  border-radius: 16px;
+  padding: 13px;
+  align-items: center;
+  border: 1px solid var(--line-color);
+  transition: 0.2s ease-in-out;
+}
+
+.customInput:hover {
+  border-color: var(--orange);
+}
+
+.customInput input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.vLine {
+  height: 25px;
+  border-left: 1px solid var(--line-color);
+}
+
+.checkboxField {
+  display: flex;
+  gap: 1px;
+  align-items: center;
+  margin-top: 10px;
+
+  p {
+    font-size: 16px;
+    color: var(--black);
+
+    a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}

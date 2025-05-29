@@ -1,0 +1,99 @@
+.accordion {
+  width: 100%;
+  border: 1px solid #d3d3d3;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  color: black;
+  background: white;
+  padding: 7px 12px;
+  align-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-items: flex-start;
+  text-align: start;
+  transition: border 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0px 0px 0px 4px rgba(253, 199, 180, 0.75);
+    -webkit-box-shadow: 0px 0px 0px 4px rgba(253, 199, 180, 0.75);
+    -moz-box-shadow: 0px 0px 0px 4px rgba(253, 199, 180, 0.75);
+  }
+
+  &.expanded {
+    border: 1px solid #f84204;
+    box-shadow: 0px 0px 0px 4px rgba(253, 199, 180, 0.75);
+    -webkit-box-shadow: 0px 0px 0px 4px rgba(253, 199, 180, 0.75);
+    -moz-box-shadow: 0px 0px 0px 4px rgba(253, 199, 180, 0.75);
+  }
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f9f9f9;
+  }
+}
+
+.icon {
+  font-size: 14px;
+  margin-right: 10px;
+  transition: transform 0.3s, color 0.3s;
+  color: black;
+
+  &.iconExpanded {
+    transform: rotate(180deg);
+    color: #f84204;
+  }
+}
+
+.question {
+  font-family: "Inter", sans-serif;
+  font-size: 25px;
+  color: black;
+  font-weight: 500;
+  transition: color 0.3s;
+
+  &.questionExpanded {
+    color: #f84204;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+.details {
+  max-height: 0;
+  overflow: hidden;
+  text-align: start;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0 0 0 40px;
+  color: #333;
+  background-color: #fff;
+  transition: max-height 0.3s ease-in-out, padding 0.3s;
+
+  &.detailsExpanded {
+    max-height: 200px;
+    padding: 10px 0 10px 40px;
+
+    @media screen and (max-width: 768px) {
+      max-height: 400px;
+      height: fit-content;
+      padding: 10px 0 10px 20px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+    padding: 0 0 0 20px;
+  }
+}

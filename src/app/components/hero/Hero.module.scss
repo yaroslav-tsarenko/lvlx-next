@@ -1,0 +1,266 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  max-width: 1840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+
+}
+
+.bgVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  transform: scale(1.5);
+
+  @media screen and (max-width: 768px) {
+    object-fit: cover;
+    transform: scale(0.8);
+  }
+}
+
+.videoAnimate {
+  opacity: 0;
+  filter: blur(20px);
+  transform: scale(1.1);
+  animation: fadeBlurIn 1.0s ease-out 0.5s forwards;
+}
+
+.videoAnimate {
+  opacity: 0;
+  filter: blur(20px);
+  transform: scale(1.1);
+  animation: fadeBlurIn 1.0s ease-out 0.5s forwards;
+}
+
+.mobileImages {
+  display: none;
+  gap: 4px;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    width: 100%;
+  }
+
+  img{
+    width: 100%;
+    height: auto;
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 90%;
+  justify-content: space-between;
+  color: white;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  text-align: left;
+
+  @media screen and (max-width: 768px) {
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.heroAnimate {
+  opacity: 0;
+  filter: blur(16px);
+  transform: translateY(30px);
+  animation: fadeBlurUp 1.8s ease-out 1.5s forwards;
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.leftSide {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0 0 40px 0;
+  gap: 100px;
+
+  @media screen and (max-width: 1440px) {
+    padding: 0 0 10px 0;
+    gap: 100px;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+    align-content: flex-start;
+    justify-content: space-between;
+    align-items: flex-start;
+    justify-items: flex-start;
+  }
+
+  @media screen and (max-width: 475px) {
+    padding: 0 0 60px 0;
+  }
+}
+
+.mainTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 20px;
+  text-align: left;
+  max-width: 350px;
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    max-width: 100%;
+
+    margin: 25px 0 0 0;
+  }
+
+  h1 {
+    font-size: 90px;
+    font-weight: 500;
+    color: var(--black);
+    line-height: 94%;
+    display: flex;
+
+    @media screen and (max-width: 768px) {
+      font-size: 40px;
+      max-width: 320px;
+    }
+  }
+
+  h2{
+    display: none;
+  }
+
+  p {
+    font-size: 24px;
+    font-weight: 400;
+    max-width: 340px;
+    color: var(--black);
+    line-height: 130%;
+  }
+}
+
+.leftSideImages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 0 10% 0;
+}
+
+.leftSideImagesMob {
+  display: none;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+@keyframes fadeBlurUp {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeBlurIn {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .hero {
+    padding: 40px;
+    gap: 50px;
+    height: fit-content;
+  }
+
+  .mainTitle h1 {
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    padding: 20px;
+    gap: 10px;
+    height: 100dvh;
+  }
+
+  .bgVideo {
+    transform: scale(0.7);
+  }
+
+  .heroContent {
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mainTitle h1 {
+    display: none;
+  }
+
+  .mainTitle h2 {
+    display: flex;
+    font-size: 37px;
+    font-weight: 500;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    color: var(--black);
+  }
+
+  .leftSideImages {
+    display: none;
+  }
+
+  .leftSideImagesMob {
+    display: flex;
+    gap: 10px;
+    padding: 0 0 13% 0;
+    width: 100%;
+  }
+
+  .leftSideImagesMob img {
+    width: 100%;
+    height: auto;
+  }
+}

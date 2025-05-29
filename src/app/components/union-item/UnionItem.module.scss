@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  width: 326px;
+  background: url("../../../assets/icons/orange-union.svg") no-repeat center center;
+  background-size: contain;
+  height: 60px;
+  align-items: center;
+  padding: 0 0 0 7%;
+  justify-content: start;
+  align-content: center;
+
+  @media screen and (max-width: 1440px) {
+    padding: 0 0 0 6%;
+  }
+
+  @media screen and (max-width: 1290px) {
+    padding: 0 0 0 6%;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 0 0 25%;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 475px) {
+    padding: 0 0 0 20%;
+    font-size: 14px;
+  }
+}

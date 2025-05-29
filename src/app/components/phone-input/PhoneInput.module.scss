@@ -1,0 +1,119 @@
+.phoneOuter {
+  position: relative;
+  width: 100%;
+}
+
+.countryFlag {
+  width: 22px;
+  height: 22px;
+  box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.34);
+  border-radius: 55px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.phoneWrapper {
+  border: 1px solid var(--line-color);
+  border-radius: 14px;
+  padding: 14px 20px;
+  width: 100%;
+  outline: none;
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+
+  button {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    font-weight: 500;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--black);
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+
+  hr {
+    border: 1px solid var(--line-color);
+  }
+}
+
+.phoneWrapper:hover {
+  border-color: var(--orange);
+}
+
+.errorBorder {
+  border-color: red !important;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  color: var(--black);
+  max-height: 300px;
+  overflow-y: auto;
+  background: var(--white);
+  border: 1px solid var(--line-color);
+  border-radius: 10px;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.searchBar {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 111;
+  padding: 10px 10px 10px 20px;
+  outline: none;
+  border-radius: 20px;
+  background: #ececec;
+  font-size: 14px;
+  border: 1px solid var(--grey-transparent);
+  transition: 0.3s all ease-in-out;
+
+  &:hover {
+    border-color: var(--orange);
+  }
+}
+
+.countryList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.countryItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: var(--line-color);
+  }
+
+  img {
+    margin-right: 10px;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}

@@ -1,0 +1,65 @@
+.wrapper {
+  display: flex;
+  position: fixed;
+  width: fit-content;
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  background: black;
+  z-index: 999;
+  gap: 5px;
+  border-radius: 50px;
+  padding: 4px;
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.mobileNav {
+  display: none;
+  background: black;
+  padding: 4px;
+  border-radius: 55px;
+  position: fixed;
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  z-index: 999;
+
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    gap: 3px;
+  }
+}
+
+.bottomAnimate {
+  opacity: 0;
+  filter: blur(16px);
+  transform: translateY(30px);
+  animation: fadeBlurUp 1.8s ease-out 1.5s forwards;
+}
+
+.customButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 55px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: var(--orange);
+  transition: 0.2s all;
+
+  &:hover {
+    background: var(--orange-hover);
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+  }
+}
+
+.img {
+  position: absolute;
+  display: flex;
+}

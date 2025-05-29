@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  gap: 20px;
+  align-content: center;
+  align-items: center;
+
+  p {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    scale: 0.7;
+  }
+}

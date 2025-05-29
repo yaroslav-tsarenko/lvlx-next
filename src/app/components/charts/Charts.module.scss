@@ -1,0 +1,55 @@
+.charts {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  width: 600px;
+  height:  400px;
+
+  @media screen and (max-width: 1445px) {
+    width: 100%;
+    height: 100%;
+  }
+  
+  @media screen and (max-width: 768px) {
+    height: 300px;
+  }
+}
+
+
+.chart75{
+  display: none;
+  height: 85%;
+  width: 86%;
+  z-index: 999;
+
+  @media screen and (max-width: 1440px) {
+    display: flex;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.chart100{
+  display: flex;
+  height: 100%;
+
+  @media screen and (max-width: 1440px) {
+    display: none;
+  }
+}
+
+.chartsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+
+  @media screen and (max-width: 1445px) {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  gap: 10px;
+
+  img{
+
+
+    @media screen and (max-width: 768px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+
+  h1 {
+    font-size: 300px;
+    font-weight: 500;
+    margin: 0;
+
+    @media screen and (max-width: 1440px) {
+      font-size: 200px;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 100px;
+    }
+  }
+
+  p {
+    font-size: 70px;
+    font-weight: 500;
+    margin: 0 0 6% 0;
+
+    @media screen and (max-width: 1440px) {
+      font-size: 40px;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 24px;
+    }
+  }
+}

@@ -1,0 +1,121 @@
+.header {
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #343a40;
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+.selector{
+  display: flex;
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.logo {
+  display: flex;
+
+  @media screen and (max-width: 768px) {
+    height: 20px;
+    width: auto;
+  }
+}
+
+.headerAnimate {
+  opacity: 0;
+  filter: blur(16px);
+  transform: translateY(-100%);
+  animation: headerFadeIn 1.8s ease-out 1.5s forwards;
+}
+
+@keyframes headerFadeIn {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.button {
+  background-color: var(--white);
+  border-radius: 14px;
+  padding: 17px 20px;
+  color: var(--black);
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid var(--line-color);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #f0f4f8;
+  }
+
+  @media screen and (max-width: 1028px) {
+    display: none;
+  }
+}
+
+.languageSelector {
+  border: 1px solid var(--line-color);
+  border-radius: 14px;
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 14px;
+  padding: 17px 30px 17px 20px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23939393' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+
+  @media screen and (max-width: 1028px) {
+    display: none;
+  }
+
+  &:hover {
+    border-color: var(--grey);
+  }
+}
+
+.customButtonWrapper {
+  display: flex;
+  background-color: var(--black);
+  border-radius: 18px;
+  width: fit-content;
+  color: var(--white);
+  font-size: 14px;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 7px 7px 30px;
+  cursor: pointer;
+
+  @media screen and (max-width: 1028px) {
+    padding: 5px 5px 5px 20px;
+    gap: 2px;
+    width: 100%;
+  }
+}
+
+.arrow {
+  display: flex;
+  background-color: var(--orange);
+  padding: 13px;
+  margin-left: 15px;
+  border-radius: 14px;
+}
