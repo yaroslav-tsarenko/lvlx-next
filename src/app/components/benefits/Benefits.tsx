@@ -14,9 +14,18 @@ import BadgeComponent from "@/app/components/badge-component/BadgeComponent";
 import { useAnimation } from "@/hooks/useAnimation";
 import {useTranslation} from "react-i18next";
 
+
+type LottieAnimationData = Record<string, unknown>;
+
 const Benefits = () => {
 
-    const [animations, setAnimations] = useState<{ [key: string]: any }>({});
+    const [animations, setAnimations] = useState<{
+        rocket?: LottieAnimationData;
+        graph?: LottieAnimationData;
+        eggs?: LottieAnimationData;
+    }>({});
+
+
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -27,10 +36,11 @@ const Benefits = () => {
                     import("@/assets/animations/graph.json"),
                     import("@/assets/animations/egg.json"),
                 ]);
+
                 setAnimations({
-                    rocket: rocketAnimation.default,
-                    graph: graphAnimation.default,
-                    eggs: eggsAnimation.default,
+                    rocket: rocketAnimation.default as LottieAnimationData,
+                    graph: graphAnimation.default as LottieAnimationData,
+                    eggs: eggsAnimation.default as LottieAnimationData,
                 });
             } catch (error) {
                 console.error("Error fetching animations:", error);

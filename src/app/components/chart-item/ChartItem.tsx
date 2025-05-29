@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { Player } from "@lottiefiles/react-lottie-player";
 
 type Props = {
-    chart: object; // Accepts only a JSON object for animations
+    chart: object;
     h4: number;
     p: string;
     highlighted?: boolean;
