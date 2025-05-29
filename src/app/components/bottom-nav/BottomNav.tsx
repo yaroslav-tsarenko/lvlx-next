@@ -12,20 +12,8 @@ import {Button, Dialog} from "@mui/material";
 import Image from "next/image";
 
 import Form from "@/app/components/form/Form";
+import { useTranslation } from "react-i18next";
 
-const buttons = [
-    {label: "Преимущества", sectionId: "benefits-section"},
-    {label: "Продукт", sectionId: "product-section"},
-    {label: "Стримерам", sectionId: "streamers-section"},
-    {label: "FAQ", sectionId: "faq-section"},
-];
-
-const menuButtons = [
-    { label: "Преимущества", sectionId: "benefits-section" },
-    { label: "Продукт", sectionId: "product-section" },
-    { label: "Стримерам", sectionId: "streamers-section" },
-    { label: "FAQ", sectionId: "faq-section" },
-];
 
 const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -54,6 +42,20 @@ const BottomNav = () => {
     const navRef = useRef<HTMLDivElement>(null);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { t } = useTranslation();
+    const buttons = [
+        { label: t("benefitsMenu"), sectionId: "benefits-section" },
+        { label: t("productMenu"), sectionId: "product-section" },
+        { label: t("streamersMenu"), sectionId: "streamers-section" },
+        { label: t("faqMenu"), sectionId: "faq-section" },
+    ];
+
+    const menuButtons = [
+        { label: t("benefitsMenu"), sectionId: "benefits-section" },
+        { label: t("productMenu"), sectionId: "product-section" },
+        { label: t("streamersMenu"), sectionId: "streamers-section" },
+        { label: t("faqMenu"), sectionId: "faq-section" },
+    ];
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -108,7 +110,7 @@ const BottomNav = () => {
                                  height: "52px",
                                  fontWeight: 400,
                                  fontFamily: "Inter, sans-serif",
-                                 textTransform: "none",
+                                 textTransform: "capitalize",
                                  color: "#fff",
                                  background: "transparent",
                                  transition: "0.2s all",
@@ -145,7 +147,7 @@ const BottomNav = () => {
                      </button>
                      <Image src={line} alt="Divider" width={2} height={52}/>
                      <Button sx={buttonStyles} onClick={toggleMenu}>
-                         Меню
+                         {t("menuMenu")}
                      </Button>
                      <Image src={line} alt="Divider" width={2} height={52}/>
                      <Button
@@ -158,7 +160,7 @@ const BottomNav = () => {
                          }}
                          onClick={openDialog}
                      >
-                         Зарегестрироваться
+                         {t("registerMenu")}
                      </Button>
                  </div>
              </div>

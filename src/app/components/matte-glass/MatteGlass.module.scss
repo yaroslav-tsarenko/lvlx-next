@@ -27,12 +27,28 @@
   var(--_g) 0 calc(var(--_d) + var(--y));
   mask-repeat: no-repeat;
 
-  img {
+  .animationCustom {
     display: flex;
     position: absolute;
     width: 100%;
     height: auto;
     bottom: 0;
+  }
+
+  .animation {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+
+    @media screen and (max-width: 768px) {
+      width: 95%;
+      height: auto;
+      top: 60%;
+    }
   }
 
   @media screen and (max-width: 1442px) {

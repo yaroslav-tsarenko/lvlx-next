@@ -10,17 +10,20 @@ import Footer from "@/app/components/footer/Footer";
 import BottomNav from "@/app/components/bottom-nav/BottomNav";
 import {I18nextProvider} from 'react-i18next';
 import i18n from '@/utils/i18next';
+import {FormRegistrationProvider} from "@/context/FormRegistrationContext";
 
 const Page = () => {
     return (
             <I18nextProvider i18n={i18n}>
-                <BottomNav/>
-                <Hero/>
-                <Benefits/>
-                <Product/>
-                <Streamers/>
-                <FAQ/>
-                <Footer/>
+                <FormRegistrationProvider>
+                    <BottomNav/>
+                    <Hero/>
+                    <Benefits/>
+                    <Product/>
+                    <Streamers/>
+                    <FAQ/>
+                    <Footer/>
+                </FormRegistrationProvider>
             </I18nextProvider>
     );
 };

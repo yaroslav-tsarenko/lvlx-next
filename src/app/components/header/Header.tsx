@@ -7,12 +7,15 @@ import styles from './Header.module.scss';
 import logo from '@/assets/logo/lvlx-logo.svg';
 import logoWhite from '@/assets/logo/lvlx-logo-white.svg';
 import arrowTopRight from '@/assets/icons/arrow-top-right.svg';
-import { IoIosArrowDown } from "react-icons/io";
+import {IoIosArrowDown} from "react-icons/io";
 import i18n from '@/utils/i18next';
+import {useTranslation} from "react-i18next";
 
 export default function Header() {
     const [currentLogo, setCurrentLogo] = useState(logo);
     const [selectedLanguage, setSelectedLanguage] = useState("RU");
+
+    const {t} = useTranslation();
 
     const logoRef = useRef<HTMLImageElement>(null);
 
@@ -76,7 +79,7 @@ export default function Header() {
                     },
                 });
             },
-            { threshold: 0.3 }
+            {threshold: 0.3}
         );
 
         const sectionsToWatch = [
@@ -111,7 +114,7 @@ export default function Header() {
             />
             <div className={styles.nav}>
                 <div className={styles.selector}>
-                    <IoIosArrowDown className={styles.arrowDown} />
+                    <IoIosArrowDown className={styles.arrowDown}/>
                     <select
                         value={selectedLanguage}
                         onChange={handleLanguageChange}
@@ -136,7 +139,7 @@ export default function Header() {
                 </div>
                 <button className={styles.button} onClick={redirectToTelegram}>PR</button>
                 <div className={styles.customButtonWrapper} onClick={redirectToTelegram}>
-                    <p>Связаться</p>
+                    <p>{t("contactUs")}</p>
                     <div className={styles.arrow}>
                         <Image
                             src={arrowTopRight}

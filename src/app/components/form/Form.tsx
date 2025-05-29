@@ -39,15 +39,15 @@ const Form = () => {
             terms: false,
         },
         validationSchema: Yup.object({
-            companyName: Yup.string().required("Обязательное поле"),
-            email: Yup.string().email("Неверный email").required("Обязательное поле"),
-            phone: Yup.string().required("Обязательное поле"),
-            telegram: Yup.string().required("Обязательное поле"),
-            password: Yup.string().required("Обязательное поле"),
+            companyName: Yup.string().required(t("requiredField")),
+            email: Yup.string().email(t("invalidEmail")).required(t("requiredField")),
+            phone: Yup.string().required(t("requiredField")),
+            telegram: Yup.string().required(t("requiredField")),
+            password: Yup.string().required(t("requiredField")),
             repeatPassword: Yup.string()
-                .oneOf([Yup.ref("password")], "Пароли не совпадают")
-                .required("Обязательное поле"),
-            terms: Yup.boolean().oneOf([true], "Вы должны согласиться с условиями"),
+                .oneOf([Yup.ref("password")], t("passwordsDoNotMatch"))
+                .required(t("requiredField")),
+            terms: Yup.boolean().oneOf([true], t("mustAcceptTerms")),
         }),
         onSubmit: async (values, {resetForm}) => {
             const payload = {
@@ -214,8 +214,8 @@ const Form = () => {
                         }}
                     />
                     <p>
-                        Я принимаю
-                        <a href="#"> правила и условия</a>
+                        {t("formAgree")}
+                        <a href="#"> {t("formTerms")}</a>
                     </p>
                 </div>
 
@@ -244,7 +244,7 @@ const Form = () => {
                     }}
                     fullWidth
                 >
-                    Зарегистрироваться
+                    {t("register")}
                 </Button>
             </form>
 

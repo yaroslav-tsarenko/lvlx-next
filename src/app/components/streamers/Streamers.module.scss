@@ -264,7 +264,7 @@
   height: 55%;
   --r: 50px; /* the radius */
   --s: 30px; /* size of inner curve */
-  --x: 320px; /* horizontal offset (no percentage) */
+  --x: 350px; /* horizontal offset (no percentage) */
   --y: 30px; /* vertical offset (no percentage) */
   border-radius: var(--r) 0 var(--r) var(--r);
   --_m: / calc(2 * var(--r)) calc(2 * var(--r)) radial-gradient(#000 70%, #0000 72%);

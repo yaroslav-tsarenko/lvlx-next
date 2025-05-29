@@ -8,14 +8,13 @@ import inst from "@/assets/icons/instagram-icon.svg";
 import yt from "@/assets/icons/youtube-icon.svg";
 import { Button } from "@mui/material";
 import { useAnimation } from "@/hooks/useAnimation";
+import { useTranslation } from "react-i18next";
+import {useFormRegistration} from "@/context/FormRegistrationContext";
 
 const Footer = () => {
-    const scrollToSection = (sectionId: string) => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
-        }
-    };
+
+    const { t } = useTranslation();
+    const { openDialog } = useFormRegistration();
 
     const footerContent = useAnimation<HTMLDivElement>({
         animation: "fadeBlurFromTopToBottom",
@@ -33,10 +32,10 @@ const Footer = () => {
         <footer className={styles.footer} id="footer-section">
             <div className={styles.footerUpper}>
                 <div className={styles.footerHeader} ref={footerContent}>
-                    <p>Монетизируй свой трафик с прямым рекламодателем iGaming продуктов.</p>
-                    <Image src={logo} alt="logo" width={150} height={30} />
+                    <p>{t("footerHeaderText")}</p>
+                    <Image src={logo} alt="logo" width={150} height={30}/>
                     <Button
-                        onClick={() => scrollToSection("home-section")}
+                        onClick={openDialog}
                         sx={{
                             background: 'var(--orange)',
                             fontSize: '16px',
@@ -56,12 +55,12 @@ const Footer = () => {
                                 display: 'none',
                             },
                         }}>
-                        Зарегестрироваться
+                        {t("register")}
                     </Button>
                 </div>
                 <div className={styles.footerMiddle} ref={footerContent}>
                     <div className={styles.footerItem}>
-                        <p>Telegram</p>
+                        <p>{t("telegram")}</p>
                         <h1>
                             <a href="https://t.me/afflvlx" target="_blank" rel="noopener noreferrer">
                                 @afflvlx
@@ -69,26 +68,26 @@ const Footer = () => {
                         </h1>
                     </div>
                     <div className={styles.footerItem}>
-                        <p>Электронная почта</p>
+                        <p>{t("emailFooter")}</p>
                         <h1>
                             <a href="mailto:partners@lvlx.top">partners@lvlx.top</a>
                         </h1>
                         <div className={styles.footerSocials}>
                             <a href="https://t.me/afflvlx" target="_blank" rel="noopener noreferrer">
-                                <Image src={tg} alt="Telegram icon" width={60} height={60} />
+                                <Image src={tg} alt="Telegram icon" width={60} height={60}/>
                             </a>
                             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                                <Image src={inst} alt="Instagram icon" width={60} height={60} />
+                                <Image src={inst} alt="Instagram icon" width={60} height={60}/>
                             </a>
                             <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-                                <Image src={yt} alt="YouTube icon" width={60} height={60} />
+                                <Image src={yt} alt="YouTube icon" width={60} height={60}/>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div className={styles.footerBottom}>
-                <p ref={footerContent2}>2025 Все права защищены. Несанкционированное воспроизведение, публикация, передача или любая другая форма копирования строго запрещены.</p>
+                <p ref={footerContent2}>{t("footerCopyright")}</p>
             </div>
         </footer>
     );

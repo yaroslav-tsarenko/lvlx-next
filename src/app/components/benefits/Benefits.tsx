@@ -1,22 +1,44 @@
 "use client";
 
-import React from 'react';
-import styles from "./Benefits.module.scss"
-import linesOrange from "@/assets/gifs/lines.gif"
+import React, { useEffect, useState } from "react";
+import styles from "./Benefits.module.scss";
+import linesOrange from "@/assets/gifs/lines.gif";
 import Image from "next/image";
 import MatteGlass from "@/app/components/matte-glass/MatteGlass";
-import rocketGif from "@/assets/gifs/rocket.gif"
-import eggsGif from "@/assets/gifs/eggs.gif"
-import graphGif from "@/assets/gifs/graph.gif"
-import rocket from "@/assets/images/rocket-static.svg"
-import graph from "@/assets/images/charts-static.svg"
-import eggs from "@/assets/images/eggs-static.svg"
-import arrows from "@/assets/images/three-arrows.svg"
+import rocket from "@/assets/images/rocket-static.svg";
+import graph from "@/assets/images/charts-static.svg";
+import eggs from "@/assets/images/eggs-static.svg";
+import arrows from "@/assets/images/three-arrows.svg";
 import UnionItem from "@/app/components/union-item/UnionItem";
 import BadgeComponent from "@/app/components/badge-component/BadgeComponent";
-import {useAnimation} from "@/hooks/useAnimation";
+import { useAnimation } from "@/hooks/useAnimation";
+import {useTranslation} from "react-i18next";
 
 const Benefits = () => {
+
+    const [animations, setAnimations] = useState<{ [key: string]: any }>({});
+    const { t } = useTranslation();
+
+    useEffect(() => {
+        const fetchAnimations = async () => {
+            try {
+                const [rocketAnimation, graphAnimation, eggsAnimation] = await Promise.all([
+                    import("@/assets/animations/rocket.json"),
+                    import("@/assets/animations/graph.json"),
+                    import("@/assets/animations/egg.json"),
+                ]);
+                setAnimations({
+                    rocket: rocketAnimation.default,
+                    graph: graphAnimation.default,
+                    eggs: eggsAnimation.default,
+                });
+            } catch (error) {
+                console.error("Error fetching animations:", error);
+            }
+        };
+
+        fetchAnimations();
+    }, []);
 
     const ref = useAnimation<HTMLHeadingElement>({
         animation: "fadeBlurLeftToRight",
@@ -33,37 +55,56 @@ const Benefits = () => {
     return (
         <div className={styles.outer} id="benefits-section">
             <div className={styles.badge}>
-                <BadgeComponent AvatarInitial="3" BadgeContent="%" Title="реферальных"/>
+                <BadgeComponent AvatarInitial="3" BadgeContent="%" Title={t("referrals")} />
             </div>
             <div className={styles.wrapper}>
-                <Image src={arrows} alt="arrows" className={styles.arrows}/>
-                <Image loading="lazy" src={linesOrange} alt="Lines" className={styles.lines} width={1920} height={500}/>
-                <h1 ref={ref}>Наши преимущества</h1>
+                <Image src={arrows} alt="arrows" className={styles.arrows} />
+                <Image
+                    loading="lazy"
+                    src={linesOrange}
+                    alt="Lines"
+                    className={styles.lines}
+                    width={1920}
+                    height={500}
+                />
+                <h1 ref={ref}>{t("benefits")}</h1>
                 <div className={styles.unions} ref={unionsRef}>
-                    <UnionItem title="Выплаты каждую неделю"/>
-                    <UnionItem title="Личный менеджер"/>
-                    <UnionItem title="Кастомные креативы"/>
-                    <UnionItem title="Приложения в аренду"/>
+                    <UnionItem title={t("benefitEveryWeek")} />
+                    <UnionItem title={t("benefitPersonalManager")} />
+                    <UnionItem title={t("benefitCustomCreatives")} />
+                    <UnionItem title={t("benefitReferral")} />
                 </div>
                 <div className={styles.benefits}>
-                    <MatteGlass title="Новые продукты"
-                                description="Воспользуйся преимуществом пустой базы гемблинг и беттинг офферов при топовом конверте reg2dep 20-50% для эффективной монетизации"
-                                src={{
-                                    image: eggs,
-                                    gif: eggsGif
-                                }}/>
-                    <MatteGlass title="Прозрачная статистика"
-                                description="Отслеживай качество трафика в партнерской программе и оптимизируй рекламные кампании, чтобы получить максимальный профит"
-                                src={{
-                                    image: graph,
-                                    gif: graphGif
-                                }}/>
-                    <MatteGlass title="Собственная разработка"
-                                description="Позволяет нам нон-стоп развивать продукты под потребности быстро меняющегося рынка и показывать стабильный рост"
-                                src={{
-                                    image: rocket,
-                                    gif: rocketGif
-                                }}/>
+                    {animations.eggs && (
+                        <MatteGlass
+                            title={t("benefitCardTitle1")}
+                            description={t("benefitCardDescription1")}
+                            src={{
+                                image: eggs,
+                                json: animations.eggs,
+                            }}
+                        />
+                    )}
+                    {animations.graph && (
+                        <MatteGlass
+                            title={t("benefitCardTitle2")}
+                            description={t("benefitCardDescription2")}
+                            src={{
+                                image: graph,
+                                json: animations.graph,
+                            }}
+                        />
+                    )}
+                    {animations.rocket && (
+                        <MatteGlass
+                            title={t("benefitCardTitle3")}
+                            description={t("benefitCardDescription3")}
+                            src={{
+                                image: rocket,
+                                json: animations.rocket,
+                            }}
+                        />
+                    )}
                 </div>
             </div>
         </div>

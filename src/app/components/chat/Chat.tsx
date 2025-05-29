@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import styles from "./Chat.module.scss";
 import gsap from "gsap";
+import { useTranslation } from "react-i18next";
 
 interface Message {
     nickname: string;
@@ -10,17 +11,7 @@ interface Message {
     pinned?: boolean;
 }
 
-const allMessages: Message[] = [
-    { nickname: "GETX", message: "350% до $1000 на первые депозиты", pinned: true },
-    { nickname: "FillTop", message: "Здорова клювoносый" },
-    { nickname: "Gibson", message: "go общий стрим с Мелом! 🏛️" },
-    { nickname: "BobrKurva", message: "пока домашку не сделаю, за слоты не сяду" },
-    { nickname: "Tolik-0921", message: "Сегодня GETX дает 🚀" },
-    { nickname: "Zubarev", message: "Больше инфы в TG t.me/zubaking" },
-    { nickname: "Donta", message: "Лучше бы Luxury girl дала" },
-    { nickname: "Oleg_453", message: "словил бонуску, но слил 10k" },
-    { nickname: "Papa_troll", message: "Вечер в хату, сто тузов по сдаче))" },
-];
+
 
 const getRandomColor = () => {
     const r = Math.floor(Math.random() * 256);
@@ -37,6 +28,20 @@ const Chat = () => {
     const [started, setStarted] = useState(false);
     const [scrollStarted, setScrollStarted] = useState(false);
     const [nicknameColors, setNicknameColors] = useState<Record<string, string>>({});
+
+    const {t} = useTranslation();
+
+    const allMessages: Message[] = [
+        {nickname: "GETX", message: t("chatMessage1"), pinned: true},
+        {nickname: "FillTop", message: t("chatMessage2")},
+        {nickname: "Gibson", message: t("chatMessage3")},
+        {nickname: "BobrKurva", message: t("chatMessage4")},
+        {nickname: "Tolik-0921", message: t("chatMessage5")},
+        {nickname: "Zubarev", message: t("chatMessage6")},
+        {nickname: "Donta", message: t("chatMessage7")},
+        {nickname: "Oleg_453", message: t("chatMessage8")},
+        {nickname: "Papa_troll", message: t("chatMessage9")},
+    ];
 
     const pinnedMessages = allMessages.filter((msg) => msg.pinned);
     const unpinned = allMessages.filter((msg) => !msg.pinned);
@@ -60,7 +65,7 @@ const Chat = () => {
                     observer.disconnect();
                 }
             },
-            { threshold: 0.2 }
+            {threshold: 0.2}
         );
         if (chatRef.current) observer.observe(chatRef.current);
         return () => observer.disconnect();
@@ -116,7 +121,7 @@ const Chat = () => {
             <div className={styles.streamerChatContent} ref={chatContentRef}>
                 {pinnedMessages.map((item, index) => (
                     <p key={`pinned-${index}`} className={`${styles.chatItem} ${styles.pinned}`}>
-            <span className={styles.nickname} style={{ color: nicknameColors[item.nickname] }}>
+            <span className={styles.nickname} style={{color: nicknameColors[item.nickname]}}>
               📌{item.nickname}:
             </span>{" "}
                         {item.message}
@@ -124,7 +129,7 @@ const Chat = () => {
                 ))}
                 {visibleMessages.map((item, index) => (
                     <div key={`visible-${index}`} className={styles.chatItem}>
-            <span className={styles.nickname} style={{ color: nicknameColors[item.nickname] }}>
+            <span className={styles.nickname} style={{color: nicknameColors[item.nickname]}}>
               {item.nickname}:
             </span>{" "}
                         {item.message}

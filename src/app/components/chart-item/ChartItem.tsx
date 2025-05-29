@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./ChartItem.module.scss";
 import clsx from "clsx";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 type Props = {
-    chart: string;
+    chart: object; // Accepts only a JSON object for animations
     h4: number;
     p: string;
     highlighted?: boolean;
@@ -65,16 +66,13 @@ const ChartItem = ({ chart, h4, p, highlighted = false, maxHeight = null }: Prop
                 </h4>
                 <p>{p}</p>
             </div>
-            <video
+            <Player
+                autoplay
+                loop
                 src={chart}
                 className={styles.chartImage}
-                width={160}
-                height={140}
-                autoPlay
-                loop
-                muted
-                style={{ backgroundColor: "transparent" }}
-                playsInline/>
+                style={{ width: 160, height: 140 }}
+            />
         </div>
     );
 };
