@@ -7,20 +7,36 @@ import styles from './Header.module.scss';
 import logo from '@/assets/logo/lvlx-logo.svg';
 import logoWhite from '@/assets/logo/lvlx-logo-white.svg';
 import arrowTopRight from '@/assets/icons/arrow-top-right.svg';
-import {IoIosArrowDown} from "react-icons/io";
 import i18n from '@/utils/i18next';
 import {useTranslation} from "react-i18next";
+import { Select, Option, selectClasses } from '@mui/joy';
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
 export default function Header() {
     const [currentLogo, setCurrentLogo] = useState(logo);
-    const [selectedLanguage, setSelectedLanguage] = useState("RU");
+    const [selectedLanguage, setSelectedLanguage] = useState(localStorage.getItem('selectedLanguageLVLX') || 'RU');
+    const [isLogoWhite, setIsLogoWhite] = useState(false);
 
     const {t} = useTranslation();
 
     const logoRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
-        localStorage.setItem('selectedLanguageLVLX', 'RU');
+        const storedLang = localStorage.getItem('selectedLanguageLVLX');
+        if (storedLang) {
+            setSelectedLanguage(storedLang);
+        } else {
+            localStorage.setItem('selectedLanguageLVLX', 'RU');
+        }
+    }, []);
+
+    const handleLanguageChange = (value: string) => {
+        setSelectedLanguage(value);
+        localStorage.setItem('selectedLanguageLVLX', value);
+        i18n.changeLanguage(value);
+    };
+
+    useEffect(() => {
         const storedLang = localStorage.getItem('selectedLanguageLVLX');
         if (storedLang) setSelectedLanguage(storedLang);
 
@@ -42,7 +58,7 @@ export default function Header() {
                     y: -20,
                     opacity: 0,
                     filter: 'blur(6px)',
-                    duration: 0.4,
+                    duration: 0.35,
                     ease: 'power2.out',
                     stagger: 0.1,
                     onComplete: () => {
@@ -55,7 +71,7 @@ export default function Header() {
                             y: 0,
                             opacity: 1,
                             filter: 'blur(0px)',
-                            duration: 0.6,
+                            duration: 0.35,
                             ease: 'power3.out',
                             stagger: 0.1,
                         });
@@ -72,7 +88,9 @@ export default function Header() {
                     opacity: 0,
                     duration: 0.3,
                     onComplete: () => {
-                        setCurrentLogo(anyVisible ? logoWhite : logo);
+                        const white = anyVisible;
+                        setCurrentLogo(white ? logoWhite : logo);
+                        setIsLogoWhite(white);
                         gsap.to(logoRef.current, {
                             opacity: 1,
                             duration: 0.3,
@@ -86,6 +104,7 @@ export default function Header() {
         const sectionsToWatch = [
             document.querySelector('#benefits-section'),
             document.querySelector('#streamers-section'),
+            document.querySelector('.titles'),
         ];
 
         sectionsToWatch.forEach((el) => el && observer.observe(el));
@@ -93,12 +112,6 @@ export default function Header() {
         return () => observer.disconnect();
     }, []);
 
-    const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
-        setSelectedLanguage(value);
-        i18n.changeLanguage(value);
-        localStorage.setItem('selectedLanguageLVLX', value);
-    };
     const redirectToTelegram = () => {
         window.location.href = 'https://t.me/your_telegram_channel';
     };
@@ -115,30 +128,39 @@ export default function Header() {
             />
             <div className={styles.nav}>
                 <div className={styles.selector}>
-                    <IoIosArrowDown className={styles.arrowDown}/>
-                    <select
+                    <Select
                         value={selectedLanguage}
-                        onChange={handleLanguageChange}
-                        style={{
-                            borderColor: "#d3d3d3",
-                            height: "50px",
-                            borderRadius: "16px",
-                            padding: "16px 20px 16px 16px",
-                            fontSize: "16px",
-                            outline: "none",
-                            width: "90px",
-                            background: "white",
-                            cursor: "pointer",
-                            appearance: "none",
-                            WebkitAppearance: "none",
-                            MozAppearance: "none",
-                        }}
-                    >
-                        <option value="RU">RU</option>
-                        <option value="EN">EN</option>
-                    </select>
+                        placeholder={selectedLanguage}
+                        onChange={(e, value) => handleLanguageChange(value as string)}
+                        indicator={<KeyboardArrowDown />}
+                        sx={{
+                            width: 90,
+                            height: 50,
+                            background: "transparent",
+                            color: isLogoWhite ? '#fff' : '#000',
+                            border: `1px solid ${isLogoWhite ? '#fff' : '#d3d3d3'}`,
+                            borderRadius: '15px',
+                            transition: 'color 0.2s ease, border-color 0.2s ease',
+                            [`& .${selectClasses.indicator}`]: {
+                                transition: '0.2s',
+                                color: isLogoWhite ? '#fff' : '#000',
+                                [`&.${selectClasses.expanded}`]: {
+                                    transform: 'rotate(-180deg)',
+                                },
+                            },
+                            '&:hover': {
+                                color: '#000',
+                            },
+                        }}>
+                        <Option value="RU">RU</Option>
+                        <Option value="EN">EN</Option>
+                    </Select>
                 </div>
-                <button className={styles.button} onClick={redirectToTelegram}>PR</button>
+                <button
+                    className={`${styles.button} ${isLogoWhite ? styles.whiteText : styles.blackText}`}
+                    onClick={redirectToTelegram}>
+                    PR
+                </button>
                 <div className={styles.customButtonWrapper} onClick={redirectToTelegram}>
                     <p>{t("contactUs")}</p>
                     <div className={styles.arrow}>

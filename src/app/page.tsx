@@ -12,21 +12,24 @@ import Streamers from "./components/streamers/Streamers";
 import Hero from "@/app/components/hero/Hero";
 import Footer from "./components/footer/Footer";
 import Preloader from "./components/preloader/Preloader";
-
-
+import dynamic from "next/dynamic";
+const Header = dynamic(() => import("@/app/components/header/Header"), {
+    ssr: false,
+});
 const Page = () => {
 
     return (
             <I18nextProvider i18n={i18n}>
                 <FormRegistrationProvider>
-                    <Preloader/>
-                    <BottomNav />
-                    <Hero />
-                    <Benefits />
-                    <Product />
-                    <Streamers />
-                    <FAQ />
-                    <Footer />
+                        <Header/>
+                        <Preloader/>
+                        <BottomNav />
+                        <Hero />
+                        <Benefits />
+                        <Product />
+                        <Streamers />
+                        <FAQ />
+                        <Footer />
                 </FormRegistrationProvider>
             </I18nextProvider>
     );

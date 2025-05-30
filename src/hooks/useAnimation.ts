@@ -37,6 +37,23 @@ export const animationsGsap = {
             ease: "power3.out",
         },
     },
+    fadeBlurLeftToRight2: {
+        from: {
+            opacity: 0,
+            x: -200,
+            filter: "blur(30px)",
+            scale: 0.98,
+            transformOrigin: "left center",
+        },
+        to: {
+            opacity: 1,
+            x: 0,
+            filter: "blur(0px)",
+            scale: 1,
+            duration: 3.5,
+            ease: "power2.inOut",
+        },
+    },
     fadeBlurFromBottomToTop: {
         from: { opacity: 0, y: 60, filter: "blur(12px)" },
         to: {
@@ -57,16 +74,6 @@ export const animationsGsap = {
             ease: "power3.out",
         },
     },
-    staggeredFadeUp: {
-        from: { opacity: 0, y: -20 },
-        to: {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            stagger: 0.2,
-        },
-    },
     typingTextFadeBlurFromLeft: {
         from: { opacity: 0, x: -40, filter: "blur(10px)", width: 0 },
         to: {
@@ -76,6 +83,17 @@ export const animationsGsap = {
             duration: 1.4,
             ease: "power3.out",
             width: "auto",
+        },
+    },
+    staggeredFadeUp: {
+        from: { opacity: 0, y: 60, filter: "blur(10px)" },
+        to: {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.2,
+            ease: "power3.out",
+            stagger: 0.3,
         },
     },
 };

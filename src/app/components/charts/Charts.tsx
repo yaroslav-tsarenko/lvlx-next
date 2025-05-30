@@ -50,7 +50,7 @@ const Charts = () => {
         <div className={styles.charts}>
             <ChartItem p={t("visits")} h4={11236} chart={animations.graph1 as object}/>
             <div className={styles.chartsColumn}>
-                <ChartItem p={t("registrations")} h4={1404} chart={animations.graph4 as object}/>
+                <ChartItem p={t("registrations")} h4={1404} chart={animations.graph2 as object}/>
                 <ChartItem
                     p={t("income")}
                     h4={32760}

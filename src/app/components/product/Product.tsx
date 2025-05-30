@@ -10,7 +10,7 @@ import tablet2En from "@/assets/images/tablet-2-slider-en.png";
 import tablet3 from "@/assets/images/tablet-3-slider.png";
 import tablet3En from "@/assets/images/tablet-3-slider-en.png";
 import bottomImage1 from "@/assets/images/slider1-benefits.svg";
-import bottomImage2 from "@/assets/images/slider2Benefits.svg";
+import bottomImage1En from "@/assets/images/slider-1-benefits-en.svg";
 import bottomImage2En from "@/assets/images/slider-2-benefits-en.svg";
 import bottomImage3 from "@/assets/images/slider3Benefits.svg";
 import bottomImage3En from "@/assets/images/slider-3-benefits-en.svg";
@@ -34,19 +34,19 @@ const Product = () => {
         {
             image: i18n.language === "RU" ? tablet1 : tablet1En,
             bigText: { title: t("bigTextTitle1"), description: t("bigTextDescription1") },
-            bottomImage: i18n.language === "RU" ? bottomImage1 : bottomImage1,
+            bottomImage: i18n.language === "RU" ? bottomImage1 : bottomImage1En,
             bottomImageMob: i18n.language === "RU" ? bottomImage1Mob : bottomImage1MobEn,
         },
         {
             image: i18n.language === "RU" ? tablet2 : tablet2En,
             bigText: { title: t("bigTextTitle2"), description: t("bigTextDescription2") },
-            bottomImage: i18n.language === "RU" ? bottomImage2 : bottomImage2En,
+            bottomImage: i18n.language === "RU" ? bottomImage3En : bottomImage3En,
             bottomImageMob: i18n.language === "RU" ? bottomImage2Mob : bottomImage2MobEn,
         },
         {
             image: i18n.language === "RU" ? tablet3 : tablet3En,
             bigText: { title: t("bigTextTitle3"), description: t("bigTextDescription3") },
-            bottomImage: i18n.language === "RU" ? bottomImage3 : bottomImage3En,
+            bottomImage: i18n.language === "RU" ? bottomImage3 : bottomImage2En,
             bottomImageMob: i18n.language === "RU" ? bottomImage3Mob : bottomImage3MobEn,
         },
     ];
